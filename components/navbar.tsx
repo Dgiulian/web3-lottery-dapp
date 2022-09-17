@@ -1,6 +1,5 @@
 import { useAddress } from "@thirdweb-dev/react";
 import React from "react";
-import { FiLogOut } from "react-icons/fi";
 import { ConnectMetamaskButton } from "./connect-metamask-button";
 type Props = {};
 
