@@ -7,11 +7,11 @@ function useUserTickets(contract: any) {
 
   const userTickets = useMemo(
     () =>
-      tickets.reduce(
+      tickets?.reduce(
         (acc: any[], item: string, index: number) =>
           item === address ? [...acc, index + 1] : [...acc],
         []
-      ),
+      ) ?? [],
     [address, tickets]
   );
   console.log(userTickets);
