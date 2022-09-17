@@ -1,6 +1,7 @@
 import { useAddress, useContractRead } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import React, { useState } from "react";
+import { useExpiration } from "../hooks";
 
 type Props = { contract: any };
 
@@ -11,11 +12,6 @@ function useTicketPrice(contract: any): number {
 function useTicketCommission(contract: any): number {
   const { data } = useContractRead(contract, "ticketCommission");
   return data as number;
-}
-
-function useExpiration(contract: any): number | undefined {
-  const { data } = useContractRead(contract, "expiration");
-  return data;
 }
 
 const BuyTickets = ({ contract }: Props) => {
@@ -29,7 +25,7 @@ const BuyTickets = ({ contract }: Props) => {
   const isExpired = false; // expiration && expiration.toString() < Date.now().toString();
 
   return (
-    <div className="w-full bg-slate-700 p-4">
+    <div className="w-full bg-slate-700 p-4 rounded-md">
       <div className="flex justify-between my-2">
         <span className="text-lg">Price per tickets</span>
         {ticketPrice && (

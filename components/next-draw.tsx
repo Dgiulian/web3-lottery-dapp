@@ -1,6 +1,7 @@
 import React from "react";
 import { useContract, useContractRead } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
+import CountdownTimer from "./countdown-timer";
 
 type Props = { contract: any };
 
@@ -39,6 +40,9 @@ const NextDraw = ({ contract }: Props) => {
             </div>
           )}
         </div>
+      </div>
+      <div className="my-4">
+        <CountdownTimer contract={contract} />
       </div>
     </div>
   );
