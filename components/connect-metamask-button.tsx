@@ -1,20 +1,32 @@
 import { useAddress, useDisconnect, useMetamask } from "@thirdweb-dev/react";
+import { FiLogOut } from "react-icons/fi";
+
+const LogoutButton = () => {
+  const disconnect = useDisconnect();
+  return (
+    <button type="button" onClick={() => disconnect()}>
+      <div className="flex flex-col items-center justify-center">
+        <FiLogOut />
+        Logout
+      </div>
+    </button>
+  );
+};
 
 export const ConnectMetamaskButton = () => {
   const connectWithMetamask = useMetamask();
   const address = useAddress();
-  const disconnect = useDisconnect();
   return (
     <div>
       {address ? (
-        <>
-          <h4>Connected as {address}</h4>
-          <button type="button" onClick={() => disconnect()}>
-            Disconnect
-          </button>
-        </>
+        <LogoutButton />
       ) : (
-        <button onClick={connectWithMetamask}>Connect Metamask Wallet</button>
+        <button
+          onClick={connectWithMetamask}
+          className="bg-amber-700 p-2 rounded-md"
+        >
+          Connect Metamask Wallet
+        </button>
       )}
     </div>
   );

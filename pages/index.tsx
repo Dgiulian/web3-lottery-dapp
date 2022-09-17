@@ -4,8 +4,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import { ethers } from "ethers";
-import { ConnectMetamaskButton } from "../components/connect-metamask-button";
 import Loading from "../components/loading";
+import Navbar from "../components/navbar";
 
 const Home: NextPage = () => {
   const [quantity, setQuantity] = useState(1);
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
   );
   return (
     <div className="bg-slate-900 w-full min-h-[100vh] text-gray-100 flex flex-col">
-      <ConnectMetamaskButton />
+      <Navbar />
       {isLoading ? (
         <Loading />
       ) : (
