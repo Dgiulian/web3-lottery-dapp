@@ -1,7 +1,12 @@
-import { useAddress, useContractRead } from "@thirdweb-dev/react";
+import {
+  useAddress,
+  useContractRead,
+  useContractWrite,
+} from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import React, { useState } from "react";
 import { useExpiration } from "../hooks";
+import toast from "react-hot-toast";
 
 type Props = { contract: any };
 
@@ -19,11 +24,31 @@ const BuyTickets = ({ contract }: Props) => {
   const ticketPrice = useTicketPrice(contract);
   const ticketCommission = useTicketCommission(contract);
   const address = useAddress();
-  const totalTicketCommission = ticketCommission * quantity;
+  const totalTicketCommission = ticketPrice * quantity;
   const expiration = useExpiration(contract);
-
+  const { mutateAsync: buyTickets, isLoading } = useContractWrite(
+    contract,
+    "BuyTickets"
+  );
   const isExpired = false; // expiration && expiration.toString() < Date.now().toString();
 
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!ticketPrice) return;
+
+    if (quantity <= 0) return;
+
+    const notification = toast.loading("Buying your tickets...");
+    try {
+      const ticketValue = ethers.utils.parseEther(
+        (Number(ethers.utils.formatEther(ticketPrice)) * quantity).toString()
+      );
+      const data = await buyTickets([{ value: ticketValue }]);
+      toast.success("Tickets purchased successufully", { id: notification });
+    } catch (error) {
+      toast.error("Whoops, something went wrong!", { id: notification });
+      console.error("Contract call failure", error);
+    }
+  };
   return (
     <div className="w-full bg-slate-700 p-4 rounded-md">
       <div className="flex justify-between my-2">
@@ -77,6 +102,7 @@ const BuyTickets = ({ contract }: Props) => {
       <button
         className="py-4 w-full bg-cyan-800 rounded-md text-xl mt-4 disabled:bg-gray-400 disabled:text-gray-600 disabled:cursor-not-allowed"
         disabled={!address || isExpired}
+        onClick={handleClick}
       >
         Buy Tickets
       </button>
