@@ -25,7 +25,7 @@ function AdminControls({ contract }: Props) {
     useContractWrite(contract, "RefundAll");
 
   const { mutateAsync: restartDraw, isLoading: isRestartingDraw } =
-    useContractWrite(contract, "RestartDraw");
+    useContractWrite(contract, "restartDraw");
 
   const handleDrawClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const notification = toast.loading("Withdrawing funds...");
