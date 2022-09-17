@@ -104,7 +104,10 @@ const BuyTickets = ({ contract }: Props) => {
         disabled={!address || isExpired}
         onClick={handleClick}
       >
-        Buy Tickets
+        Buy {quantity} Tickets for{" "}
+        {totalTicketCommission &&
+          ethers.utils.formatEther(totalTicketCommission.toString())}
+        &nbsp;MATIC
       </button>
     </div>
   );
