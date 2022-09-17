@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div>
+        <div className="mt-4">
           <NextDraw contract={contract} />
         </div>
       )}

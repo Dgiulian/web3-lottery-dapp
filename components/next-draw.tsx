@@ -18,7 +18,7 @@ const NextDraw = ({ contract }: Props) => {
   const currentWinningReward = useCurrentWinningReward(contract);
 
   return (
-    <div className="border-gray-500 w-full bg-slate-700 p-6">
+    <div className="border-gray-500 w-full bg-slate-700 p-6 rounded-md ">
       <h1 className="text-5xl text-center">The Next Draw</h1>
 
       <div className="flex justify-center space-x-4 mt-4">
