@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="mt-4 space-y-4 mx-auto w-full lg:max-w-6xl">
+        <div className="mt-4 mx-auto w-full lg:max-w-6xl flex flex-col lg:flex-row space-y-4 lg:space-x-4 lg:space-y-0  items-start">
           <NextDraw contract={contract} />
           <BuyTickets contract={contract} />
         </div>
