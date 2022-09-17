@@ -1,6 +1,7 @@
 import { useContract } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import { useState } from "react";
+import BuyTickets from "../components/buy-tickets";
 
 import Loading from "../components/loading";
 import Navbar from "../components/navbar";
@@ -17,8 +18,9 @@ const Home: NextPage = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="mt-4">
+        <div className="mt-4 space-y-4 mx-auto w-full lg:max-w-6xl">
           <NextDraw contract={contract} />
+          <BuyTickets contract={contract} />
         </div>
       )}
     </div>
