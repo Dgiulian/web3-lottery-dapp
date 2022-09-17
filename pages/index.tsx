@@ -6,6 +6,7 @@ import BuyTickets from "../components/buy-tickets";
 import Loading from "../components/loading";
 import Navbar from "../components/navbar";
 import NextDraw from "../components/next-draw";
+import UserTickets from "../components/user-tickets";
 
 const Home: NextPage = () => {
   const [quantity, setQuantity] = useState(1);
@@ -20,7 +21,10 @@ const Home: NextPage = () => {
       ) : (
         <div className="mt-4 mx-auto w-full lg:max-w-6xl flex flex-col lg:flex-row space-y-4 lg:space-x-4 lg:space-y-0  items-start">
           <NextDraw contract={contract} />
-          <BuyTickets contract={contract} />
+          <div className="space-y-2 sm:space-y-0  lg:space-y-2 md:space-x-2 lg:space-x-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1">
+            <BuyTickets contract={contract} />
+            <UserTickets contract={contract} />
+          </div>
         </div>
       )}
     </div>
